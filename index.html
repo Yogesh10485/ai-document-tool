@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Document Tool</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>AI Document Tool</h1>
+<form action="/convert" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".doc,.docx,.pdf">
+    <button type="submit">Convert to PDF</button>
+</form>
+<form action="/summarize" method="POST">
+    <textarea name="text" rows="4" placeholder="Enter text to summarize"></textarea>
+    <button type="submit">Summarize</button>
+</form>
+<div id="result">
+    {% if pdf_filename %}
+    <a href="/download/{{ pdf_filename }}" download>Download PDF</a>
+    {% endif %}
+    {% if summary %}
+    <p>{{ summary }}</p>
+    {% endif %}
+</div>
+</body>
+</html>
